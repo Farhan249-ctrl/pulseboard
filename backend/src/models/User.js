@@ -34,8 +34,6 @@ const userSchema = new mongoose.Schema({
   timestamps: false
 });
 
-userSchema.index({ email: 1 });
-
 userSchema.methods.toJSON = function() {
   const user = this.toObject();
   delete user.passwordHash;
