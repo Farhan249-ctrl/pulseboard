@@ -43,7 +43,7 @@ function loadConfig() {
     nodeEnv: env.NODE_ENV,
     port: env.API_PORT,
     mongoUri,
-    mongoDbName: isTest ? 'pulseboard_test' : env.MONGO_APP_DB,
+    mongoDbName: env.MONGO_APP_DB,
     jwtSecret: env.JWT_SECRET,
     jwtExpiresIn: env.JWT_EXPIRES_IN,
     adminEmail: env.ADMIN_EMAIL,
