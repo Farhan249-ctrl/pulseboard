@@ -1,0 +1,21 @@
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: pulseboard_mongo_dev
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:${MONGO_DEV_PORT}:27017"
+    volumes:
+      - pulseboard_mongo_dev:/data/db
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  pulseboard_mongo_dev:
