@@ -5,4 +5,5 @@ dist
 coverage
 certs/*.key
 certs/*.pem
+certs/*.crt
 .DS_Store
