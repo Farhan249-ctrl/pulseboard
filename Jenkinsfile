@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    REGISTRY   = 'docker.io/farhan249'
+    REGISTRY   = 'docker.io/farhan14031'
     IMAGE_TAG  = "${env.BUILD_NUMBER}"
     COMPOSE    = 'docker compose'
   }
@@ -32,8 +32,10 @@ pipeline {
     stage('Build images') {
       steps {
         sh '''
-          docker build -t $REGISTRY/pulseboard-api:$IMAGE_TAG ./backend
-          docker build -t $REGISTRY/pulseboard-frontend:$IMAGE_TAG ./frontend
+          docker build -t $REGISTRY/slotlock-backend:$IMAGE_TAG ./backend
+          docker build -t $REGISTRY/slotlock-backend:v1 ./backend
+          docker build -t $REGISTRY/slotlock-frontend:$IMAGE_TAG ./frontend
+          docker build -t $REGISTRY/slotlock-frontend:v1 ./frontend
         '''
       }
     }
@@ -44,8 +46,10 @@ pipeline {
                          usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
           sh '''
             echo "$DH_PASS" | docker login -u "$DH_USER" --password-stdin
-            docker push $REGISTRY/pulseboard-api:$IMAGE_TAG
-            docker push $REGISTRY/pulseboard-frontend:$IMAGE_TAG
+            docker push $REGISTRY/slotlock-backend:$IMAGE_TAG
+            docker push $REGISTRY/slotlock-backend:v1
+            docker push $REGISTRY/slotlock-frontend:$IMAGE_TAG
+            docker push $REGISTRY/slotlock-frontend:v1
           '''
         }
       }

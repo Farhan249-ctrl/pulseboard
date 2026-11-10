@@ -48,6 +48,14 @@ Open https://localhost:8443 (accept the self-signed certificate warning).
 ## Jenkinsfile
 `Jenkinsfile` at the repo root defines the six stages. It is written for a Jenkins agent with Docker and Docker Hub credentials (`dockerhub-creds`). **It has not been run on a live Jenkins server.**
 
+## Docker Hub
+Images are built and pushed by the Jenkins `Build images` and `Push` stages, tagged with the build number and `v1`:
+
+- Backend: https://hub.docker.com/r/farhan14031/slotlock-backend
+- Frontend: https://hub.docker.com/r/farhan14031/slotlock-frontend
+
+**Not yet pushed** — no live Jenkins run has executed the pipeline.
+
 ## Containers (evidence)
 See `docs/evidence.txt` for `docker compose ps`, logs and `docker stats`.
 
